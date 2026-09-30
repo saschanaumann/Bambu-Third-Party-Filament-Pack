@@ -1,10 +1,14 @@
-# Bambu Third-Party Filament Pack – H2C & P2S
+# Bambu Third-Party Filament Pack – H2C, P2S, P1S & H2D
 
-Community filament profiles for **Bambu Lab H2C and P2S** with **0.4 mm and 0.6 mm nozzles** and AMS support.
+Community filament profiles for **Bambu Lab H2C, P2S, P1S and H2D** with **0.4 mm and 0.6 mm nozzles** and AMS support.
 
-Community-Filamentprofile für **Bambu Lab H2C und P2S** mit **0,4-mm- und 0,6-mm-Düsen** sowie AMS-Unterstützung.
+Community-Filamentprofile für **Bambu Lab H2C, P2S, P1S und H2D** mit **0,4-mm- und 0,6-mm-Düsen** sowie AMS-Unterstützung.
 
-**Current release / Aktuelle Version: v1.1**
+**Stable release / Stabile Version: v1.1**  
+**Current beta / Aktuelle Beta: v1.2-beta**
+
+> ⚠️ **P1S and H2D support is currently BETA and requires community testing.**  
+> ⚠️ **Die Unterstützung für P1S und H2D befindet sich aktuell in der BETA und benötigt Community-Tests.**
 
 ---
 
@@ -16,25 +20,39 @@ This project provides additional third-party filament profiles for Bambu Studio.
 
 The goal is to make third-party filament manufacturers directly selectable in the AMS material settings without requiring users to manually edit Bambu Studio configuration files.
 
-Version **1.1** adds support for **0.6 mm nozzles** in addition to the existing 0.4 mm profiles.
+Version **1.1** added support for **0.6 mm nozzles** for H2C and P2S.
 
-The profiles were prepared and tested with a focus on:
-
-- Bambu Lab H2C
-- Bambu Lab P2S
-- 0.4 mm nozzle
-- 0.6 mm nozzle
-- AMS / AMS 2 Pro
-- Bambu Studio 2.8.2.61
-- BBL configuration package 2.8.0.6
-
-AMS selection, confirmation and synchronization were successfully tested with multiple third-party filament profiles on P2S and H2C.
+Version **1.2 BETA** additionally introduces profiles for **Bambu Lab P1S and H2D** with 0.4 mm and 0.6 mm nozzles.
 
 ---
 
-## Included manufacturers
+## Printer support
 
-Version 1.1 includes profiles for:
+### ✅ Physically tested
+
+- Bambu Lab H2C – 0.4 mm
+- Bambu Lab H2C – 0.6 mm
+- Bambu Lab P2S – 0.4 mm
+- Bambu Lab P2S – 0.6 mm
+
+AMS selection, confirmation and synchronization were successfully tested with multiple third-party filament profiles on H2C and P2S.
+
+### 🧪 BETA – community testing required
+
+- Bambu Lab P1S – 0.4 mm
+- Bambu Lab P1S – 0.6 mm
+- Bambu Lab H2D – 0.4 mm
+- Bambu Lab H2D – 0.6 mm
+
+The P1S and H2D profiles are included in **v1.2-beta**, but have not yet been physically tested by the project author because these printers are not available for testing.
+
+**P1S and H2D owners are invited to test the profiles and provide feedback.**
+
+---
+
+## Supported manufacturers
+
+The package currently includes profiles for 16 third-party manufacturers:
 
 - Amazon Basics
 - ANYCUBIC
@@ -57,48 +75,28 @@ Version 1.1 includes profiles for:
 
 ## Filament parameters
 
-Where reliable official manufacturer specifications were available, these values were used as the basis for the filament profiles.
+Where reliable official manufacturer specifications are available for a specific filament or material variant, these values are used as the basis for the profile.
 
-Where no reliable manufacturer-specific values were available, suitable Bambu Lab material-type reference values were used as a starting point.
+Where no reliable manufacturer-specific values are available, suitable Bambu Lab reference values for the corresponding material type are used as a starting point.
 
-This applies to material groups such as:
+This means that not every value in every profile should be interpreted as an original manufacturer specification.
 
-- PLA
-- PLA+
-- PETG
-- ABS
-- ASA
-- TPU
-- Support materials
-- and other supported filament types
-
-Manufacturer variants may require additional calibration depending on printer, nozzle, filament batch and printing conditions.
-
-The profiles should therefore be considered tested starting points rather than a guarantee of optimal settings for every filament spool.
-
----
-
-## 0.4 mm and 0.6 mm support
-
-Version 1.1 provides printer-specific profiles for both supported nozzle sizes:
-
-**Bambu Lab H2C**
-- 0.4 mm
-- 0.6 mm
-
-**Bambu Lab P2S**
-- 0.4 mm
-- 0.6 mm
-
-The corresponding profile is automatically available when the matching printer and nozzle diameter are selected in Bambu Studio.
+The profiles are intended as tested or prepared starting points. Depending on the filament, batch, printer and printing conditions, additional calibration may be required.
 
 ---
 
 ## AMS support
 
-Third-party filament profiles can be selected directly in the AMS material settings.
+The project is designed to allow supported third-party filament manufacturers to be selected directly in the AMS material settings.
 
-The workflow was tested with several manufacturers and materials, including:
+Successfully tested on H2C and P2S:
+
+- Material selection
+- Confirmation and persistence
+- AMS synchronization with Bambu Studio
+- Printer/nozzle-specific profile loading
+
+Tested filament examples include:
 
 - ANYCUBIC PETG
 - BioPLA PLA Wood
@@ -106,71 +104,74 @@ The workflow was tested with several manufacturers and materials, including:
 - WINKLE ASA
 - SUNLU profiles
 
-Testing included:
-
-- selecting the filament in AMS
-- confirming the material
-- synchronization with Bambu Studio
-- persistence after confirmation
-- loading the corresponding printer/nozzle profile
-
 ---
 
 ## Installation
 
+### Stable v1.1
+
+Use v1.1 if you have:
+
+- Bambu Lab H2C
+- Bambu Lab P2S
+
+with 0.4 mm or 0.6 mm nozzle.
+
+### Beta v1.2
+
+Use v1.2-beta if you want to test:
+
+- Bambu Lab P1S
+- Bambu Lab H2D
+
+The existing H2C and P2S profiles are also included.
+
+### Installation steps
+
 1. Close Bambu Studio completely.
-2. Download the latest release ZIP.
+2. Download the desired ZIP package from the Releases section.
 3. Extract the ZIP file.
-4. Run:
-
-`INSTALLIEREN-v1.1.cmd`
-
-5. Follow the instructions displayed by the installer.
-6. Start Bambu Studio.
-7. Select your H2C or P2S and the correct nozzle diameter.
-8. Open the AMS material settings and select the desired manufacturer/material.
+4. Run the included installation CMD file.
+5. Start Bambu Studio.
+6. Select the correct printer and nozzle diameter.
+7. Select the desired third-party filament in the AMS material settings.
 
 The installer creates a backup of the affected Bambu Studio profile data before installation.
 
 ---
 
-## Restore / Uninstall
+## Restore
 
-If you need to restore the previous configuration, close Bambu Studio and run:
+If you want to return to the previous Bambu Studio filament configuration, use the included:
 
 `WIEDERHERSTELLEN.cmd`
 
-The restore function uses the backup created before installation.
+Do **not** manually delete the complete Bambu Studio `system` directory.
 
 ---
 
-## Important
+## v1.2 BETA testers wanted
 
-Do not delete the complete Bambu Studio `system` directory.
+If you own a **Bambu Lab P1S or H2D**, your help is welcome.
 
-The installer only works with the profile files required by this project.
+Please test:
 
-The public package does not intentionally overwrite the user's complete Bambu Studio configuration.
+- 0.4 mm and/or 0.6 mm nozzle
+- AMS material selection
+- Whether the selected filament remains after confirmation
+- Synchronization with Bambu Studio
+- Correct filament profile loading
 
----
+When reporting a test, please include:
 
-## Compatibility
-
-Major Bambu Studio or BBL configuration updates may change profile structures or compatibility requirements.
-
-After major Bambu Studio updates, compatibility should therefore be checked again before relying on the profiles.
-
----
-
-## Disclaimer
-
-This is an independent community project.
-
-It is **not an official Bambu Lab product** and is not affiliated with or endorsed by Bambu Lab.
-
-Filament and manufacturer names are used only to identify compatible materials and profiles.
-
-Use the profiles at your own risk. Always observe the filament manufacturer's safety and processing recommendations.
+- Printer model
+- Nozzle size
+- Bambu Studio version
+- AMS / AMS 2 Pro
+- Filament manufacturer
+- Material
+- Whether selection and synchronization worked
+- Screenshot or error message if something failed
 
 ---
 
@@ -180,27 +181,41 @@ Use the profiles at your own risk. Always observe the filament manufacturer's sa
 
 Dieses Projekt stellt zusätzliche Filamentprofile von Drittanbietern für Bambu Studio bereit.
 
-Ziel ist es, Filamenthersteller von Drittanbietern direkt in den AMS-Materialeinstellungen auswählen zu können, ohne dass Benutzer die Konfigurationsdateien von Bambu Studio manuell bearbeiten müssen.
+Ziel ist es, Filamente verschiedener Hersteller direkt in den AMS-Materialeinstellungen auswählen zu können, ohne dass Anwender die Konfigurationsdateien von Bambu Studio manuell bearbeiten müssen.
 
-Version **1.1** erweitert das bestehende Paket um die Unterstützung für **0,6-mm-Düsen**.
+Mit Version **1.1** wurde die Unterstützung für **0,6-mm-Düsen** auf H2C und P2S ergänzt.
 
-Unterstützt und getestet wurden insbesondere:
-
-- Bambu Lab H2C
-- Bambu Lab P2S
-- 0,4-mm-Düse
-- 0,6-mm-Düse
-- AMS / AMS 2 Pro
-- Bambu Studio 2.8.2.61
-- BBL-Konfigurationspaket 2.8.0.6
-
-AMS-Auswahl, Bestätigung und Synchronisierung wurden mit mehreren Drittanbieter-Filamentprofilen auf P2S und H2C erfolgreich getestet.
+Version **1.2 BETA** erweitert das Paket zusätzlich um Profile für **Bambu Lab P1S und H2D** mit 0,4-mm- und 0,6-mm-Düsen.
 
 ---
 
-## Enthaltene Hersteller
+## Drucker-Unterstützung
 
-Version 1.1 enthält Profile für:
+### ✅ Von mir physisch getestet
+
+- Bambu Lab H2C – 0,4 mm
+- Bambu Lab H2C – 0,6 mm
+- Bambu Lab P2S – 0,4 mm
+- Bambu Lab P2S – 0,6 mm
+
+AMS-Auswahl, Bestätigung, Speicherung und Synchronisierung wurden mit mehreren Drittanbieter-Filamenten erfolgreich auf H2C und P2S getestet.
+
+### 🧪 BETA – Community-Tester gesucht
+
+- Bambu Lab P1S – 0,4 mm
+- Bambu Lab P1S – 0,6 mm
+- Bambu Lab H2D – 0,4 mm
+- Bambu Lab H2D – 0,6 mm
+
+Die P1S- und H2D-Profile sind in **v1.2-beta** enthalten, konnten vom Projektentwickler jedoch noch nicht physisch getestet werden, da diese Drucker nicht zur Verfügung stehen.
+
+**Besitzer eines P1S oder H2D sind ausdrücklich eingeladen, die Profile zu testen und Rückmeldung zu geben.**
+
+---
+
+## Unterstützte Hersteller
+
+Aktuell sind Profile für 16 Drittanbieter enthalten:
 
 - Amazon Basics
 - ANYCUBIC
@@ -223,48 +238,28 @@ Version 1.1 enthält Profile für:
 
 ## Filamentparameter
 
-Wo zuverlässige offizielle Herstellerangaben verfügbar waren, wurden diese als Grundlage für die Filamentprofile verwendet.
+Soweit für ein bestimmtes Filament bzw. eine Materialvariante zuverlässige offizielle Herstellerangaben verfügbar sind, werden diese als Grundlage für das Profil verwendet.
 
-Wo keine eindeutigen herstellerspezifischen Angaben verfügbar waren, wurden passende Bambu-Lab-Referenzwerte des entsprechenden Materialtyps als Ausgangspunkt verwendet.
+Wo keine zuverlässigen herstellerspezifischen Angaben verfügbar sind, dienen passende Bambu-Lab-Referenzwerte des entsprechenden Materialtyps als Ausgangspunkt.
 
-Dies betrifft beispielsweise:
+Daher sollten nicht sämtliche Werte aller Profile als originale Herstellerangaben verstanden werden.
 
-- PLA
-- PLA+
-- PETG
-- ABS
-- ASA
-- TPU
-- Supportmaterialien
-- weitere unterstützte Filamenttypen
-
-Je nach Hersteller, Filamentvariante, Drucker, Düse, Charge und Druckbedingungen kann eine zusätzliche Kalibrierung erforderlich sein.
-
-Die Profile sind deshalb als getestete Ausgangswerte zu verstehen und nicht als Garantie für optimale Einstellungen bei jeder Filamentrolle.
-
----
-
-## Unterstützung für 0,4 mm und 0,6 mm
-
-Version 1.1 stellt druckerspezifische Profile für beide unterstützten Düsengrößen bereit:
-
-**Bambu Lab H2C**
-- 0,4 mm
-- 0,6 mm
-
-**Bambu Lab P2S**
-- 0,4 mm
-- 0,6 mm
-
-Bei Auswahl des entsprechenden Druckers und Düsendurchmessers in Bambu Studio steht das dazugehörige Filamentprofil zur Verfügung.
+Die Profile sind als getestete bzw. vorbereitete Ausgangswerte gedacht. Je nach Filament, Charge, Drucker und Druckbedingungen kann eine zusätzliche Kalibrierung erforderlich sein.
 
 ---
 
 ## AMS-Unterstützung
 
-Die Drittanbieter-Filamentprofile können direkt in den AMS-Materialeinstellungen ausgewählt werden.
+Das Projekt ermöglicht die direkte Auswahl unterstützter Drittanbieter-Filamente in den AMS-Materialeinstellungen.
 
-Der Ablauf wurde mit mehreren Herstellern und Materialien getestet, unter anderem:
+Auf H2C und P2S erfolgreich getestet:
+
+- Materialauswahl
+- Bestätigung und dauerhafte Speicherung
+- Synchronisierung mit Bambu Studio
+- korrektes Laden des drucker- und düsenspezifischen Profils
+
+Getestete Beispiele:
 
 - ANYCUBIC PETG
 - BioPLA PLA Wood
@@ -272,71 +267,84 @@ Der Ablauf wurde mit mehreren Herstellern und Materialien getestet, unter andere
 - WINKLE ASA
 - SUNLU Profile
 
-Geprüft wurden:
-
-- Auswahl des Filaments im AMS
-- Bestätigung des Materials
-- Synchronisierung mit Bambu Studio
-- Erhalt des Profils nach der Bestätigung
-- Laden des passenden Drucker-/Düsenprofils
-
 ---
 
 ## Installation
 
+### Stabile Version v1.1
+
+Verwende v1.1 für:
+
+- Bambu Lab H2C
+- Bambu Lab P2S
+
+mit 0,4-mm- oder 0,6-mm-Düse.
+
+### Beta-Version v1.2
+
+Verwende v1.2-beta, wenn du die neuen Profile für folgende Drucker testen möchtest:
+
+- Bambu Lab P1S
+- Bambu Lab H2D
+
+Die bestehenden H2C- und P2S-Profile sind ebenfalls enthalten.
+
+### Installation
+
 1. Bambu Studio vollständig schließen.
-2. Die ZIP-Datei des aktuellen Releases herunterladen.
-3. ZIP-Datei entpacken.
-4. Folgende Datei starten:
+2. Gewünschte ZIP-Datei im Bereich „Releases“ herunterladen.
+3. ZIP-Datei vollständig entpacken.
+4. Die enthaltene Installations-CMD starten.
+5. Bambu Studio starten.
+6. Richtigen Drucker und Düsendurchmesser auswählen.
+7. Gewünschtes Drittanbieter-Filament in den AMS-Materialeinstellungen auswählen.
 
-`INSTALLIEREN-v1.1.cmd`
-
-5. Den Anweisungen des Installers folgen.
-6. Bambu Studio starten.
-7. H2C oder P2S und den richtigen Düsendurchmesser auswählen.
-8. AMS-Materialeinstellungen öffnen und gewünschten Hersteller bzw. Material auswählen.
-
-Vor der Installation erstellt der Installer eine Sicherung der betroffenen Bambu-Studio-Profildaten.
+Vor der Installation wird automatisch ein Backup der betroffenen Bambu-Studio-Profildaten erstellt.
 
 ---
 
 ## Wiederherstellung
 
-Soll die vorherige Konfiguration wiederhergestellt werden, Bambu Studio vollständig schließen und folgende Datei starten:
+Um zur vorherigen Bambu-Studio-Filamentkonfiguration zurückzukehren, die enthaltene Datei
 
 `WIEDERHERSTELLEN.cmd`
 
-Die Wiederherstellung verwendet die vor der Installation erstellte Sicherung.
+verwenden.
+
+**Nicht den kompletten `system`-Ordner von Bambu Studio manuell löschen.**
 
 ---
 
-## Wichtig
+## 🧪 Tester für v1.2 BETA gesucht
 
-Nicht den kompletten `system`-Ordner von Bambu Studio löschen.
+Wenn du einen **Bambu Lab P1S oder H2D** besitzt, kannst du das Projekt unterstützen.
 
-Der Installer arbeitet ausschließlich mit den für dieses Projekt erforderlichen Profildaten.
+Bitte teste insbesondere:
 
-Das öffentliche Paket ist nicht dafür vorgesehen, die vollständige persönliche Bambu-Studio-Konfiguration des Benutzers zu überschreiben.
+- 0,4-mm- und/oder 0,6-mm-Düse
+- Auswahl des Filaments im AMS
+- ob das Filament nach der Bestätigung ausgewählt bleibt
+- Synchronisierung mit Bambu Studio
+- korrektes Laden des Filamentprofils
+
+Bei einer Rückmeldung bitte möglichst angeben:
+
+- Druckermodell
+- Düsengröße
+- Bambu-Studio-Version
+- AMS / AMS 2 Pro
+- Filamenthersteller
+- Material
+- ob Auswahl und Synchronisierung funktioniert haben
+- bei Fehlern möglichst Screenshot oder Fehlermeldung
 
 ---
 
-## Kompatibilität
+## Disclaimer / Hinweis
 
-Größere Aktualisierungen von Bambu Studio oder des BBL-Konfigurationspakets können die Profilstruktur oder Kompatibilität verändern.
+This is an independent community project and is **not affiliated with or endorsed by Bambu Lab**.
 
-Nach größeren Bambu-Studio-Updates sollte deshalb die Kompatibilität erneut geprüft werden.
-
----
-
-## Haftungsausschluss
-
-Dies ist ein unabhängiges Community-Projekt.
-
-Es handelt sich **nicht um ein offizielles Produkt von Bambu Lab** und es besteht keine Verbindung, Partnerschaft oder Unterstützung durch Bambu Lab.
-
-Filament- und Herstellernamen dienen ausschließlich der Identifikation der entsprechenden Materialien und Profile.
-
-Die Verwendung erfolgt auf eigene Verantwortung. Sicherheits- und Verarbeitungshinweise der jeweiligen Filamenthersteller sind zu beachten.
+Dies ist ein unabhängiges Community-Projekt und **kein offizielles Projekt oder Produkt von Bambu Lab**.
 
 ---
 
