@@ -1,0 +1,14 @@
+Actual upstream v1.2-beta archive, SHA-256 verified.
+Environment: Linux Ruby 3.3, simulated Bambu Studio registries with required stock presets.
+No real macOS or AMS tested.
+
+PASS P1S 0.4: 354 target profiles; install, repeat, restore
+PASS P1S 0.6: 354 target profiles; install, repeat, restore
+PASS H2D 0.4: 354 target profiles; install, repeat, restore
+PASS H2D 0.6: 354 target profiles; install, repeat, restore
+PASS H2C 0.4: 357 target profiles; install, repeat, restore
+PASS H2C 0.6: 357 target profiles; install, repeat, restore
+PASS P2S 0.4: 357 target profiles; install, repeat, restore
+PASS P2S 0.6: 357 target profiles; install, repeat, restore
+
+Dry-run and missing-dependency checks also passed for all eight combinations.

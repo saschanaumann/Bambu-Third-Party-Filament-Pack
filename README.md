@@ -1,355 +1,150 @@
-# Bambu Third-Party Filament Pack – H2C, P2S, P1S & H2D
+# Bambu Third-Party Filament Pack — macOS Edition
 
-Community filament profiles for **Bambu Lab H2C, P2S, P1S and H2D** with **0.4 mm and 0.6 mm nozzles** and AMS support.
+Native macOS installer for the original **Bambu Third-Party Filament Pack v1.2-beta** by Naumann Consulting / 3D Service. Community profiles for Bambu Lab H2C, P2S, P1S and H2D (0.4 mm / 0.6 mm), including AMS material selection.
 
-Community-Filamentprofile für **Bambu Lab H2C, P2S, P1S und H2D** mit **0,4-mm- und 0,6-mm-Düsen** sowie AMS-Unterstützung.
+**macOS release:** `v1.2-beta.3-macos` (pre-release)  
+**Upstream profile data:** `v1.2-beta` (pinned, unchanged)  
+**Original project:** [saschanaumann/Bambu-Third-Party-Filament-Pack](https://github.com/saschanaumann/Bambu-Third-Party-Filament-Pack)
 
-**Stable release / Stabile Version: v1.1**  
-**Current beta / Aktuelle Beta: v1.2-beta**
+[Download macOS release assets](https://github.com/WoozyFace/Bambu-Third-Party-Filament-Pack-MacOS/releases) · [Report an issue](https://github.com/WoozyFace/Bambu-Third-Party-Filament-Pack-MacOS/issues) · [Original Windows releases](https://github.com/saschanaumann/Bambu-Third-Party-Filament-Pack/releases)
 
-> ⚠️ **P1S and H2D support is currently BETA and requires community testing.**  
-> ⚠️ **Die Unterstützung für P1S und H2D befindet sich aktuell in der BETA und benötigt Community-Tests.**
+## English
 
----
+### What this does
 
-# 🇬🇧 English
+The original pack makes third-party filament presets available in Bambu Studio's system profile registry, allowing supported materials to be selected in the AMS material menu. This macOS port installs the original profiles for the selected printer and nozzle, including their required base presets. Existing registry entries and files are not overwritten. Inheritance dependencies are resolved from the actual profile metadata; required stock presets must exist in the local Bambu Studio registry. Missing dependencies and conflicting files stop installation before changes. No Windows, Wine, Homebrew, administrator password, or manual JSON editing is required when the macOS system Ruby is available.
 
-## About
+This does **not** enable automatic recognition of third-party RFID tags or change AMS firmware. Material and color must still be selected manually when required.
 
-This project provides additional third-party filament profiles for Bambu Studio.
+### Compatibility
 
-The goal is to make third-party filament manufacturers directly selectable in the AMS material settings without requiring users to manually edit Bambu Studio configuration files.
+| Printer | Nozzles | Status |
+| --- | --- | --- |
+| H2C | 0.4 / 0.6 mm | Upstream profiles physically tested by original author; macOS port needs community validation |
+| P2S | 0.4 / 0.6 mm | Upstream profiles physically tested by original author; macOS port needs community validation |
+| P1S | 0.4 / 0.6 mm | Beta; earlier macOS method reported working on Intel Mac with P1S 0.4 mm and AMS SA001 |
+| H2D | 0.4 / 0.6 mm | Beta; community validation needed |
 
-Version **1.1** added support for **0.6 mm nozzles** for H2C and P2S.
+The revised installer has been tested with the actual checksum-verified upstream archive (3,254 profiles), using simulated Bambu Studio system registries for all eight printer/nozzle combinations. Preview, installation, repeat installation, restore and missing-dependency rejection passed. No physical macOS hardware was used. Intel and Apple Silicon are intended targets; the new installer has not yet been validated on either. Bambu Studio updates can alter the profile layout or replace system presets. Other printers/nozzles are not supported by this release.
 
-Version **1.2 BETA** additionally introduces profiles for **Bambu Lab P1S and H2D** with 0.4 mm and 0.6 mm nozzles.
+### Requirements
 
----
+- Bambu Studio installed and launched at least once with the intended printer/nozzle configured.
+- macOS with Ruby 2.6+ (normally `/usr/bin/ruby`), `curl`, and `unzip`. The installer checks the expected local layout before changes.
+- Internet access for automatic acquisition of the exact upstream ZIP, or the original ZIP placed next to the installer for offline use.
+- No `sudo` required. Quit Bambu Studio completely with **Command-Q** before installation or restore.
 
-## Printer support
+### macOS installation — copy and paste (recommended)
 
-### ✅ Physically tested
+1. Quit Bambu Studio completely (**Command-Q**).
+2. Press **Command-Space**, type **Terminal**, and press Return.
+3. Copy the entire command below, paste it into Terminal (**Command-V**) and press Return.
 
-- Bambu Lab H2C – 0.4 mm
-- Bambu Lab H2C – 0.6 mm
-- Bambu Lab P2S – 0.4 mm
-- Bambu Lab P2S – 0.6 mm
+```bash
+/bin/bash -c 'set -e; d=$(/usr/bin/mktemp -d); cleanup() { /bin/rm -rf -- "$d"; }; trap cleanup EXIT; f="$d/Install-Filament-Pack-macOS.rb"; /usr/bin/curl -fLsS --proto =https --proto-redir =https --retry 2 --connect-timeout 20 --max-time 120 -o "$f" "https://github.com/WoozyFace/Bambu-Third-Party-Filament-Pack-MacOS/releases/download/v1.2-beta.3-macos/Install-Filament-Pack-macOS.rb"; printf "%s  %s\n" "8d0cd5a4b1c9123eecdf7776480ce6f1e2ca999e3ef9dde9ed47a0b1e82fee5f" "$f" | /usr/bin/shasum -a 256 -c -; /usr/bin/ruby "$f"'
+```
 
-AMS selection, confirmation and synchronization were successfully tested with multiple third-party filament profiles on H2C and P2S.
+4. Select `preview` to validate first, or `install`. Choose your printer and nozzle and confirm. Press Return to accept the displayed default.
+5. When the installer reports `Installation complete` or `Nothing to install`, reopen Bambu Studio and choose the desired material and color in the AMS device settings. Enable the filament presets if necessary.
 
-### 🧪 BETA – community testing required
+The command downloads the versioned Ruby installer from this fork, verifies its SHA-256 before executing it, and removes the temporary installer when finished. The installer then verifies and downloads the original profile archive. No downloaded executable needs to be opened in Finder. This does not disable Gatekeeper or alter macOS security settings; a managed Mac may still enforce its own restrictions. Run only commands from a trusted source. If a checksum fails, stop and report the error.
 
-- Bambu Lab P1S – 0.4 mm
-- Bambu Lab P1S – 0.6 mm
-- Bambu Lab H2D – 0.4 mm
-- Bambu Lab H2D – 0.6 mm
+### Local and offline installation
 
-The P1S and H2D profiles are included in **v1.2-beta**, but have not yet been physically tested by the project author because these printers are not available for testing.
+For advanced users, the ZIP asset contains the same Ruby installer and documentation. Extract it, then run the following in Terminal (adjust the path if necessary):
 
-**P1S and H2D owners are invited to test the profiles and provide feedback.**
+```bash
+cd "$HOME/Downloads/Bambu-Filament-Pack-macOS-v1.2-beta.3"
+/usr/bin/ruby Install-Filament-Pack-macOS.rb --printer P1S --nozzle 0.4 --dry-run
+/usr/bin/ruby Install-Filament-Pack-macOS.rb --printer P1S --nozzle 0.4
+```
 
----
+### Offline installation
 
-## Supported manufacturers
+Download the [original v1.2-beta archive](https://github.com/saschanaumann/Bambu-Third-Party-Filament-Pack/releases/download/v1.2-beta/Bambu-Third-Party-Filament-Pack-H2C-P2S-P1S-H2D-v1.2-BETA.zip) while online. Keep the original filename and place it alongside the `.rb` file. The installer automatically uses this local ZIP and verifies the same checksum; no internet access is needed. You can also supply an absolute path with `--zip "/path/to/original.zip"`.
 
-The package currently includes profiles for 16 third-party manufacturers:
+Original archive SHA-256:
 
-- Amazon Basics
-- ANYCUBIC
-- BioPLA
-- Breakaway / Support
-- Eono
-- ERYONE
-- FLASHFORGE
-- GIANTARM
-- iSANMATE
-- JAYO
-- Overture
-- SMARTFIL
-- SUNLU
-- TECBEARS
-- TINMORRY
-- WINKLE
+```text
+4ab267a83105ca9ee026e3b3b8df2dfd6eef1635f8a298b010b2529ed36a789b
+```
 
----
+### Backup and restore
 
-## Filament parameters
+The installer targets only:
 
-Where reliable official manufacturer specifications are available for a specific filament or material variant, these values are used as the basis for the profile.
+```text
+~/Library/Application Support/BambuStudio/system/BBL/
+~/Library/Application Support/BambuStudio/system/BBL.json
+```
 
-Where no reliable manufacturer-specific values are available, suitable Bambu Lab reference values for the corresponding material type are used as a starting point.
+Before installing, it backs up both in:
 
-This means that not every value in every profile should be interpreted as an original manufacturer specification.
+```text
+~/Library/Application Support/BambuFilamentPack/Backups/MAC-PRE-INSTALL-.../
+```
 
-The profiles are intended as tested or prepared starting points. Depending on the filament, batch, printer and printing conditions, additional calibration may be required.
+To undo the last completed installation, quit Bambu Studio and run the same recommended copy-and-paste command again, then select `restore`. With a locally extracted ZIP you can also use:
 
----
+```bash
+/usr/bin/ruby Install-Filament-Pack-macOS.rb --restore --dry-run
+/usr/bin/ruby Install-Filament-Pack-macOS.rb --restore
+```
 
-## AMS support
+Restore is deliberately conservative: it requires the current registry and all added files to match their recorded post-installation checksums. It restores the prior registry and removes only the files added by that installation. If Studio or another installer changed them, automatic restore refuses rather than discarding later changes. Backups remain available for manual recovery. Never delete the entire `system` folder. Repeated installs skip existing files; if upgrading the pack, review the current presets first.
 
-The project is designed to allow supported third-party filament manufacturers to be selected directly in the AMS material settings.
+### Windows installation
 
-Successfully tested on H2C and P2S:
+Windows users should use the original author's [Windows releases](https://github.com/saschanaumann/Bambu-Third-Party-Filament-Pack/releases). Stable v1.1 supports H2C and P2S; the legacy v1.2-beta also introduces P1S and H2D. Close Bambu Studio, extract the original package, run its included installation CMD, then reopen Studio and select the printer/nozzle and AMS material. For rollback, use the upstream `WIEDERHERSTELLEN.cmd`. This fork's macOS ZIP is not a Windows installer.
 
-- Material selection
-- Confirmation and persistence
-- AMS synchronization with Bambu Studio
-- Printer/nozzle-specific profile loading
+### Supported manufacturers (upstream v1.2-beta)
 
-Tested filament examples include:
+Amazon Basics · ANYCUBIC · BioPLA · Breakaway / Support · Eono · ERYONE · FLASHFORGE · GIANTARM · iSANMATE · JAYO · Overture · SMARTFIL · SUNLU · TECBEARS · TINMORRY · WINKLE.
 
-- ANYCUBIC PETG
-- BioPLA PLA Wood
-- JAYO PLA
-- WINKLE ASA
-- SUNLU profiles
+Profiles use manufacturer specifications where available, otherwise appropriate Bambu reference values. Treat them as starting points; calibrate flow, temperature and volumetric speed for your own filament. A custom 1.80 mm Anycubic PLA profile from personal testing is deliberately not bundled: it is not a standard 1.75 mm manufacturer profile and the final calibration is not verified.
 
----
+### Troubleshooting and feedback
 
-## Installation
+- **Profiles not found:** launch Studio once, select the printer/nozzle, then quit Studio completely.
+- **Missing parent / incompatible manifest:** no profile changes are made during validation; share the error, Bambu Studio version, printer and nozzle.
+- **Download/checksum error:** use the pinned original ZIP, not a newer upstream release. Do not bypass checksum verification.
+- **AMS brand missing:** confirm the correct printer/nozzle, enable presets, and restart Studio. Non-Bambu RFID tags are not automatically recognized by this installer.
+- **Update removed presets:** preview and reinstall if the original profile format is still compatible.
 
-### Stable v1.1
+Community reports should include macOS version, Intel/Apple Silicon, Bambu Studio version, printer, nozzle, AMS generation, material, selection/persistence/synchronization results, and any error. Do not upload personal configuration or backups containing account data.
 
-Use v1.1 if you have:
+## Deutsch
 
-- Bambu Lab H2C
-- Bambu Lab P2S
+### Installation unter macOS — Kopieren und Einfügen
 
-with 0.4 mm or 0.6 mm nozzle.
+1. Bambu Studio mindestens einmal starten, Drucker und Düse auswählen und mit **Cmd-Q** vollständig beenden.
+2. **Cmd-Leertaste** drücken, `Terminal` eingeben und mit Enter bestätigen.
+3. Den vollständigen folgenden Befehl kopieren, mit **Cmd-V** einfügen und Enter drücken:
 
-### Beta v1.2
+```bash
+/bin/bash -c 'set -e; d=$(/usr/bin/mktemp -d); cleanup() { /bin/rm -rf -- "$d"; }; trap cleanup EXIT; f="$d/Install-Filament-Pack-macOS.rb"; /usr/bin/curl -fLsS --proto =https --proto-redir =https --retry 2 --connect-timeout 20 --max-time 120 -o "$f" "https://github.com/WoozyFace/Bambu-Third-Party-Filament-Pack-MacOS/releases/download/v1.2-beta.3-macos/Install-Filament-Pack-macOS.rb"; printf "%s  %s\n" "8d0cd5a4b1c9123eecdf7776480ce6f1e2ca999e3ef9dde9ed47a0b1e82fee5f" "$f" | /usr/bin/shasum -a 256 -c -; /usr/bin/ruby "$f"'
+```
 
-Use v1.2-beta if you want to test:
+4. `preview` (Vorschau) oder `install` wählen, Drucker und Düse auswählen und bestätigen.
+5. Nach erfolgreicher Installation Studio erneut öffnen, Filamentprofile aktivieren und Material/Farbe im AMS einstellen.
 
-- Bambu Lab P1S
-- Bambu Lab H2D
+Der Befehl lädt den versionsgebundenen Ruby-Installer, prüft dessen SHA-256 und führt ihn erst danach aus. Der Installer lädt und prüft anschließend die Originalprofile. Es ist kein Doppelklick auf eine heruntergeladene ausführbare Datei nötig. Gatekeeper und die macOS-Sicherheitseinstellungen bleiben unverändert. Bei fehlerhafter Prüfsumme nicht fortfahren.
 
-The existing H2C and P2S profiles are also included.
+Voraussetzungen: macOS mit Ruby 2.6+, curl und unzip; Internet für die automatische Installation. Für die Offline-Installation siehe die englische Anleitung. Keine Administratorrechte, kein Wine, kein Homebrew erforderlich, sofern System-Ruby verfügbar ist.
 
-### Installation steps
+### Kompatibilität, Backup und Wiederherstellung
 
-1. Close Bambu Studio completely.
-2. Download the desired ZIP package from the Releases section.
-3. Extract the ZIP file.
-4. Run the included installation CMD file.
-5. Start Bambu Studio.
-6. Select the correct printer and nozzle diameter.
-7. Select the desired third-party filament in the AMS material settings.
+H2C/P2S (0,4/0,6 mm): vom ursprünglichen Entwickler getestet, macOS-Port benötigt weitere Tests. P1S/H2D (0,4/0,6 mm): Beta. Die frühere Methode wurde auf Intel-Mac mit P1S 0,4 mm und AMS SA001 als erfolgreich gemeldet. Der überarbeitete Installer wurde mit dem echten, SHA-256-geprüften Originalarchiv (3.254 Profile) und simulierten Bambu-Studio-Systemregistrierungen für alle acht Drucker-/Düsenkombinationen geprüft; ein Test auf echter Mac-Hardware steht noch aus.
 
-The installer creates a backup of the affected Bambu Studio profile data before installation.
+Das Backup liegt unter `~/Library/Application Support/BambuFilamentPack/Backups/`. Für Wiederherstellung Studio beenden, denselben Terminal-Befehl erneut ausführen und `restore` auswählen. Automatische Wiederherstellung wird verweigert, wenn seit der Installation Änderungen an der Registrierung oder den hinzugefügten Profilen vorgenommen wurden. Den vollständigen Studio-Systemordner nicht löschen.
 
----
+Windows: bitte die [Original-Releases](https://github.com/saschanaumann/Bambu-Third-Party-Filament-Pack/releases) und die dort enthaltene Installations-CMD bzw. `WIEDERHERSTELLEN.cmd` verwenden.
 
-## Restore
+Filamentprofile sind Ausgangswerte und benötigen gegebenenfalls Kalibrierung. Der Installer ändert weder AMS-Firmware noch RFID-Erkennung. Fehlerberichte bitte mit macOS-Version, Prozessorarchitektur, Studio-Version, Drucker, Düse, AMS, Material und Fehlertext einreichen.
 
-If you want to return to the previous Bambu Studio filament configuration, use the included:
+## Credits and disclaimer / Danksagung und Hinweis
 
-`WIEDERHERSTELLEN.cmd`
-
-Do **not** manually delete the complete Bambu Studio `system` directory.
-
----
-
-## v1.2 BETA testers wanted
-
-If you own a **Bambu Lab P1S or H2D**, your help is welcome.
-
-Please test:
-
-- 0.4 mm and/or 0.6 mm nozzle
-- AMS material selection
-- Whether the selected filament remains after confirmation
-- Synchronization with Bambu Studio
-- Correct filament profile loading
-
-When reporting a test, please include:
-
-- Printer model
-- Nozzle size
-- Bambu Studio version
-- AMS / AMS 2 Pro
-- Filament manufacturer
-- Material
-- Whether selection and synchronization worked
-- Screenshot or error message if something failed
-
----
-
-# 🇩🇪 Deutsch
-
-## Über das Projekt
-
-Dieses Projekt stellt zusätzliche Filamentprofile von Drittanbietern für Bambu Studio bereit.
-
-Ziel ist es, Filamente verschiedener Hersteller direkt in den AMS-Materialeinstellungen auswählen zu können, ohne dass Anwender die Konfigurationsdateien von Bambu Studio manuell bearbeiten müssen.
-
-Mit Version **1.1** wurde die Unterstützung für **0,6-mm-Düsen** auf H2C und P2S ergänzt.
-
-Version **1.2 BETA** erweitert das Paket zusätzlich um Profile für **Bambu Lab P1S und H2D** mit 0,4-mm- und 0,6-mm-Düsen.
-
----
-
-## Drucker-Unterstützung
-
-### ✅ Von mir physisch getestet
-
-- Bambu Lab H2C – 0,4 mm
-- Bambu Lab H2C – 0,6 mm
-- Bambu Lab P2S – 0,4 mm
-- Bambu Lab P2S – 0,6 mm
-
-AMS-Auswahl, Bestätigung, Speicherung und Synchronisierung wurden mit mehreren Drittanbieter-Filamenten erfolgreich auf H2C und P2S getestet.
-
-### 🧪 BETA – Community-Tester gesucht
-
-- Bambu Lab P1S – 0,4 mm
-- Bambu Lab P1S – 0,6 mm
-- Bambu Lab H2D – 0,4 mm
-- Bambu Lab H2D – 0,6 mm
-
-Die P1S- und H2D-Profile sind in **v1.2-beta** enthalten, konnten vom Projektentwickler jedoch noch nicht physisch getestet werden, da diese Drucker nicht zur Verfügung stehen.
-
-**Besitzer eines P1S oder H2D sind ausdrücklich eingeladen, die Profile zu testen und Rückmeldung zu geben.**
-
----
-
-## Unterstützte Hersteller
-
-Aktuell sind Profile für 16 Drittanbieter enthalten:
-
-- Amazon Basics
-- ANYCUBIC
-- BioPLA
-- Breakaway / Support
-- Eono
-- ERYONE
-- FLASHFORGE
-- GIANTARM
-- iSANMATE
-- JAYO
-- Overture
-- SMARTFIL
-- SUNLU
-- TECBEARS
-- TINMORRY
-- WINKLE
-
----
-
-## Filamentparameter
-
-Soweit für ein bestimmtes Filament bzw. eine Materialvariante zuverlässige offizielle Herstellerangaben verfügbar sind, werden diese als Grundlage für das Profil verwendet.
-
-Wo keine zuverlässigen herstellerspezifischen Angaben verfügbar sind, dienen passende Bambu-Lab-Referenzwerte des entsprechenden Materialtyps als Ausgangspunkt.
-
-Daher sollten nicht sämtliche Werte aller Profile als originale Herstellerangaben verstanden werden.
-
-Die Profile sind als getestete bzw. vorbereitete Ausgangswerte gedacht. Je nach Filament, Charge, Drucker und Druckbedingungen kann eine zusätzliche Kalibrierung erforderlich sein.
-
----
-
-## AMS-Unterstützung
-
-Das Projekt ermöglicht die direkte Auswahl unterstützter Drittanbieter-Filamente in den AMS-Materialeinstellungen.
-
-Auf H2C und P2S erfolgreich getestet:
-
-- Materialauswahl
-- Bestätigung und dauerhafte Speicherung
-- Synchronisierung mit Bambu Studio
-- korrektes Laden des drucker- und düsenspezifischen Profils
-
-Getestete Beispiele:
-
-- ANYCUBIC PETG
-- BioPLA PLA Wood
-- JAYO PLA
-- WINKLE ASA
-- SUNLU Profile
-
----
-
-## Installation
-
-### Stabile Version v1.1
-
-Verwende v1.1 für:
-
-- Bambu Lab H2C
-- Bambu Lab P2S
-
-mit 0,4-mm- oder 0,6-mm-Düse.
-
-### Beta-Version v1.2
-
-Verwende v1.2-beta, wenn du die neuen Profile für folgende Drucker testen möchtest:
-
-- Bambu Lab P1S
-- Bambu Lab H2D
-
-Die bestehenden H2C- und P2S-Profile sind ebenfalls enthalten.
-
-### Installation
-
-1. Bambu Studio vollständig schließen.
-2. Gewünschte ZIP-Datei im Bereich „Releases“ herunterladen.
-3. ZIP-Datei vollständig entpacken.
-4. Die enthaltene Installations-CMD starten.
-5. Bambu Studio starten.
-6. Richtigen Drucker und Düsendurchmesser auswählen.
-7. Gewünschtes Drittanbieter-Filament in den AMS-Materialeinstellungen auswählen.
-
-Vor der Installation wird automatisch ein Backup der betroffenen Bambu-Studio-Profildaten erstellt.
-
----
-
-## Wiederherstellung
-
-Um zur vorherigen Bambu-Studio-Filamentkonfiguration zurückzukehren, die enthaltene Datei
-
-`WIEDERHERSTELLEN.cmd`
-
-verwenden.
-
-**Nicht den kompletten `system`-Ordner von Bambu Studio manuell löschen.**
-
----
-
-## 🧪 Tester für v1.2 BETA gesucht
-
-Wenn du einen **Bambu Lab P1S oder H2D** besitzt, kannst du das Projekt unterstützen.
-
-Bitte teste insbesondere:
-
-- 0,4-mm- und/oder 0,6-mm-Düse
-- Auswahl des Filaments im AMS
-- ob das Filament nach der Bestätigung ausgewählt bleibt
-- Synchronisierung mit Bambu Studio
-- korrektes Laden des Filamentprofils
-
-Bei einer Rückmeldung bitte möglichst angeben:
-
-- Druckermodell
-- Düsengröße
-- Bambu-Studio-Version
-- AMS / AMS 2 Pro
-- Filamenthersteller
-- Material
-- ob Auswahl und Synchronisierung funktioniert haben
-- bei Fehlern möglichst Screenshot oder Fehlermeldung
-
----
-
-## Disclaimer / Hinweis
-
-This is an independent community project and is **not affiliated with or endorsed by Bambu Lab**.
-
-Dies ist ein unabhängiges Community-Projekt und **kein offizielles Projekt oder Produkt von Bambu Lab**.
-
----
-
-## Credits
-
-Developed and tested as a community project by **Naumann Consulting / 3D Service**.
-
-Entwickelt und getestet als Community-Projekt von **Naumann Consulting / 3D Service**.
+- Original filament profiles and Windows installer: **Naumann Consulting / 3D Service (saschanaumann)**.
+- macOS adaptation: **WoozyFace / EasyComp Zeeland**.
+- The original profile data remains hosted by its author. This fork retrieves the pinned original archive rather than republishing it; no upstream redistribution license was verified.
+- Independent community project, not affiliated with or endorsed by Bambu Lab. / Unabhängiges Community-Projekt, nicht offiziell von Bambu Lab unterstützt.
